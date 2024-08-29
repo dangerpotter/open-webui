@@ -42,22 +42,22 @@ from apps.openai.main import (
 from apps.audio.main import app as audio_app
 from apps.images.main import app as images_app
 from apps.rag.main import app as rag_app
-from apps.webui.main import (
-    app as webui_app,
+from apps.Falcor.main import (
+    app as Falcor_app,
     get_pipe_models,
     generate_function_chat_completion,
 )
-from apps.webui.internal.db import Session
+from apps.Falcor.internal.db import Session
 
 
 from pydantic import BaseModel
 
-from apps.webui.models.auths import Auths
-from apps.webui.models.models import Models
-from apps.webui.models.functions import Functions
-from apps.webui.models.users import Users, UserModel
+from apps.Falcor.models.auths import Auths
+from apps.Falcor.models.models import Models
+from apps.Falcor.models.functions import Functions
+from apps.Falcor.models.users import Users, UserModel
 
-from apps.webui.utils import load_function_module_by_id
+from apps.Falcor.utils import load_function_module_by_id
 
 from utils.utils import (
     get_admin_user,
@@ -87,9 +87,9 @@ from apps.rag.utils import get_rag_context, rag_template
 
 from config import (
     run_migrations,
-    WEBUI_NAME,
-    WEBUI_URL,
-    WEBUI_AUTH,
+    Falcor_NAME,
+    Falcor_URL,
+    Falcor_AUTH,
     ENV,
     VERSION,
     CHANGELOG,
@@ -105,7 +105,7 @@ from config import (
     SRC_LOG_LEVELS,
     WEBHOOK_URL,
     ENABLE_ADMIN_EXPORT,
-    WEBUI_BUILD_HASH,
+    Falcor_BUILD_HASH,
     TASK_MODEL,
     TASK_MODEL_EXTERNAL,
     TITLE_GENERATION_PROMPT_TEMPLATE,
@@ -116,9 +116,9 @@ from config import (
     OAUTH_PROVIDERS,
     ENABLE_OAUTH_SIGNUP,
     OAUTH_MERGE_ACCOUNTS_BY_EMAIL,
-    WEBUI_SECRET_KEY,
-    WEBUI_SESSION_COOKIE_SAME_SITE,
-    WEBUI_SESSION_COOKIE_SECURE,
+    Falcor_SECRET_KEY,
+    Falcor_SESSION_COOKIE_SAME_SITE,
+    Falcor_SESSION_COOKIE_SECURE,
     ENABLE_ADMIN_CHAT_ACCESS,
     AppConfig,
     CORS_ALLOW_ORIGIN,
@@ -150,17 +150,16 @@ class SPAStaticFiles(StaticFiles):
 
 print(
     rf"""
-  ___                    __        __   _     _   _ ___ 
- / _ \ _ __   ___ _ __   \ \      / /__| |__ | | | |_ _|
-| | | | '_ \ / _ \ '_ \   \ \ /\ / / _ \ '_ \| | | || | 
-| |_| | |_) |  __/ | | |   \ V  V /  __/ |_) | |_| || | 
- \___/| .__/ \___|_| |_|    \_/\_/ \___|_.__/ \___/|___|
-      |_|                                               
+___________      .__                      
+\_   _____/____  |  |   ____  ___________ 
+ |    __) \__  \ |  | _/ ___\/  _ \_  __ \
+ |     \   / __ \|  |_\  \__(  <_> )  | \/
+ \___  /  (____  /____/\___  >____/|__|   
+     \/        \/          \/                                                          
 
       
-v{VERSION} - building the best open-source AI user interface.
-{f"Commit: {WEBUI_BUILD_HASH}" if WEBUI_BUILD_HASH != "dev-build" else ""}
-https://github.com/open-webui/open-webui
+v3.16 - The luck dragon has been summoned.
+
 """
 )
 
@@ -264,11 +263,11 @@ async def chat_completion_filter_functions_handler(body, model, extra_params):
         if not filter:
             continue
 
-        if filter_id in webui_app.state.FUNCTIONS:
-            function_module = webui_app.state.FUNCTIONS[filter_id]
+        if filter_id in Falcor_app.state.FUNCTIONS:
+            function_module = Falcor_app.state.FUNCTIONS[filter_id]
         else:
             function_module, _, _ = load_function_module_by_id(filter_id)
-            webui_app.state.FUNCTIONS[filter_id] = function_module
+            Falcor_app.state.FUNCTIONS[filter_id] = function_module
 
         # Check if the function has a file_handler variable
         if hasattr(function_module, "file_handler"):
@@ -375,7 +374,7 @@ async def chat_completion_tools_handler(
 
     task_model_id = get_task_model_id(body["model"])
     tools = get_tools(
-        webui_app,
+        Falcor_app,
         tool_ids,
         user,
         {
@@ -789,7 +788,7 @@ async def check_url(request: Request, call_next):
 async def update_embedding_function(request: Request, call_next):
     response = await call_next(request)
     if "/embedding/update" in request.url.path:
-        webui_app.state.EMBEDDING_FUNCTION = rag_app.state.EMBEDDING_FUNCTION
+        Falcor_app.state.EMBEDDING_FUNCTION = rag_app.state.EMBEDDING_FUNCTION
     return response
 
 
@@ -802,9 +801,9 @@ app.mount("/images/api/v1", images_app)
 app.mount("/audio/api/v1", audio_app)
 app.mount("/rag/api/v1", rag_app)
 
-app.mount("/api/v1", webui_app)
+app.mount("/api/v1", Falcor_app)
 
-webui_app.state.EMBEDDING_FUNCTION = rag_app.state.EMBEDDING_FUNCTION
+Falcor_app.state.EMBEDDING_FUNCTION = rag_app.state.EMBEDDING_FUNCTION
 
 
 async def get_all_models():
@@ -909,15 +908,15 @@ async def get_all_models():
             if action is None:
                 raise Exception(f"Action not found: {action_id}")
 
-            if action_id in webui_app.state.FUNCTIONS:
-                function_module = webui_app.state.FUNCTIONS[action_id]
+            if action_id in Falcor_app.state.FUNCTIONS:
+                function_module = Falcor_app.state.FUNCTIONS[action_id]
             else:
                 function_module, _, _ = load_function_module_by_id(action_id)
-                webui_app.state.FUNCTIONS[action_id] = function_module
+                Falcor_app.state.FUNCTIONS[action_id] = function_module
 
-            __webui__ = False
-            if hasattr(function_module, "__webui__"):
-                __webui__ = function_module.__webui__
+            __Falcor__ = False
+            if hasattr(function_module, "__Falcor__"):
+                __Falcor__ = function_module.__Falcor__
 
             if hasattr(function_module, "actions"):
                 actions = function_module.actions
@@ -932,7 +931,7 @@ async def get_all_models():
                             "icon_url": _action.get(
                                 "icon_url", action.meta.manifest.get("icon_url", None)
                             ),
-                            **({"__webui__": __webui__} if __webui__ else {}),
+                            **({"__Falcor__": __Falcor__} if __Falcor__ else {}),
                         }
                         for _action in actions
                     ]
@@ -944,12 +943,12 @@ async def get_all_models():
                         "name": action.name,
                         "description": action.meta.description,
                         "icon_url": action.meta.manifest.get("icon_url", None),
-                        **({"__webui__": __webui__} if __webui__ else {}),
+                        **({"__Falcor__": __Falcor__} if __Falcor__ else {}),
                     }
                 )
 
     app.state.MODELS = {model["id"]: model for model in models}
-    webui_app.state.MODELS = app.state.MODELS
+    Falcor_app.state.MODELS = app.state.MODELS
 
     return models
 
@@ -1107,11 +1106,11 @@ async def chat_completed(form_data: dict, user=Depends(get_verified_user)):
         if not filter:
             continue
 
-        if filter_id in webui_app.state.FUNCTIONS:
-            function_module = webui_app.state.FUNCTIONS[filter_id]
+        if filter_id in Falcor_app.state.FUNCTIONS:
+            function_module = Falcor_app.state.FUNCTIONS[filter_id]
         else:
             function_module, _, _ = load_function_module_by_id(filter_id)
-            webui_app.state.FUNCTIONS[filter_id] = function_module
+            Falcor_app.state.FUNCTIONS[filter_id] = function_module
 
         if hasattr(function_module, "valves") and hasattr(function_module, "Valves"):
             valves = Functions.get_function_valves_by_id(filter_id)
@@ -1214,11 +1213,11 @@ async def chat_action(action_id: str, form_data: dict, user=Depends(get_verified
         }
     )
 
-    if action_id in webui_app.state.FUNCTIONS:
-        function_module = webui_app.state.FUNCTIONS[action_id]
+    if action_id in Falcor_app.state.FUNCTIONS:
+        function_module = Falcor_app.state.FUNCTIONS[action_id]
     else:
         function_module, _, _ = load_function_module_by_id(action_id)
-        webui_app.state.FUNCTIONS[action_id] = function_module
+        Falcor_app.state.FUNCTIONS[action_id] = function_module
 
     if hasattr(function_module, "valves") and hasattr(function_module, "Valves"):
         valves = Functions.get_function_valves_by_id(action_id)
@@ -1898,7 +1897,7 @@ async def get_app_config(request: Request):
 
     return {
         "status": True,
-        "name": WEBUI_NAME,
+        "name": Falcor_NAME,
         "version": VERSION,
         "default_locale": str(DEFAULT_LOCALE),
         "oauth": {
@@ -1908,16 +1907,16 @@ async def get_app_config(request: Request):
             }
         },
         "features": {
-            "auth": WEBUI_AUTH,
-            "auth_trusted_header": bool(webui_app.state.AUTH_TRUSTED_EMAIL_HEADER),
-            "enable_signup": webui_app.state.config.ENABLE_SIGNUP,
-            "enable_login_form": webui_app.state.config.ENABLE_LOGIN_FORM,
+            "auth": Falcor_AUTH,
+            "auth_trusted_header": bool(Falcor_app.state.AUTH_TRUSTED_EMAIL_HEADER),
+            "enable_signup": Falcor_app.state.config.ENABLE_SIGNUP,
+            "enable_login_form": Falcor_app.state.config.ENABLE_LOGIN_FORM,
             **(
                 {
                     "enable_web_search": rag_app.state.config.ENABLE_RAG_WEB_SEARCH,
                     "enable_image_generation": images_app.state.config.ENABLED,
-                    "enable_community_sharing": webui_app.state.config.ENABLE_COMMUNITY_SHARING,
-                    "enable_message_rating": webui_app.state.config.ENABLE_MESSAGE_RATING,
+                    "enable_community_sharing": Falcor_app.state.config.ENABLE_COMMUNITY_SHARING,
+                    "enable_message_rating": Falcor_app.state.config.ENABLE_MESSAGE_RATING,
                     "enable_admin_export": ENABLE_ADMIN_EXPORT,
                     "enable_admin_chat_access": ENABLE_ADMIN_CHAT_ACCESS,
                 }
@@ -1927,8 +1926,8 @@ async def get_app_config(request: Request):
         },
         **(
             {
-                "default_models": webui_app.state.config.DEFAULT_MODELS,
-                "default_prompt_suggestions": webui_app.state.config.DEFAULT_PROMPT_SUGGESTIONS,
+                "default_models": Falcor_app.state.config.DEFAULT_MODELS,
+                "default_prompt_suggestions": Falcor_app.state.config.DEFAULT_PROMPT_SUGGESTIONS,
                 "audio": {
                     "tts": {
                         "engine": audio_app.state.config.TTS_ENGINE,
@@ -1943,7 +1942,7 @@ async def get_app_config(request: Request):
                     "max_size": rag_app.state.config.FILE_MAX_SIZE,
                     "max_count": rag_app.state.config.FILE_MAX_COUNT,
                 },
-                "permissions": {**webui_app.state.config.USER_PERMISSIONS},
+                "permissions": {**Falcor_app.state.config.USER_PERMISSIONS},
             }
             if user is not None
             else {}
@@ -1994,7 +1993,7 @@ class UrlForm(BaseModel):
 @app.post("/api/webhook")
 async def update_webhook_url(form_data: UrlForm, user=Depends(get_admin_user)):
     app.state.config.WEBHOOK_URL = form_data.url
-    webui_app.state.WEBHOOK_URL = app.state.config.WEBHOOK_URL
+    Falcor_app.state.WEBHOOK_URL = app.state.config.WEBHOOK_URL
     return {"url": app.state.config.WEBHOOK_URL}
 
 
@@ -2015,7 +2014,7 @@ async def get_app_latest_release_version():
     try:
         async with aiohttp.ClientSession(trust_env=True) as session:
             async with session.get(
-                "https://api.github.com/repos/open-webui/open-webui/releases/latest"
+                "https://api.github.com/repos/Falcor/Falcor/releases/latest"
             ) as response:
                 response.raise_for_status()
                 data = await response.json()
@@ -2051,10 +2050,10 @@ for provider_name, provider_config in OAUTH_PROVIDERS.items():
 if len(OAUTH_PROVIDERS) > 0:
     app.add_middleware(
         SessionMiddleware,
-        secret_key=WEBUI_SECRET_KEY,
+        secret_key=Falcor_SECRET_KEY,
         session_cookie="oui-session",
-        same_site=WEBUI_SESSION_COOKIE_SAME_SITE,
-        https_only=WEBUI_SESSION_COOKIE_SECURE,
+        same_site=Falcor_SESSION_COOKIE_SAME_SITE,
+        https_only=Falcor_SESSION_COOKIE_SECURE,
     )
 
 
@@ -2095,7 +2094,7 @@ async def oauth_callback(provider: str, request: Request, response: Response):
         log.warning(f"OAuth callback failed, sub is missing: {user_data}")
         raise HTTPException(400, detail=ERROR_MESSAGES.INVALID_CRED)
     provider_sub = f"{provider}@{sub}"
-    email_claim = webui_app.state.config.OAUTH_EMAIL_CLAIM
+    email_claim = Falcor_app.state.config.OAUTH_EMAIL_CLAIM
     email = user_data.get(email_claim, "").lower()
     # We currently mandate that email addresses are provided
     if not email:
@@ -2122,7 +2121,7 @@ async def oauth_callback(provider: str, request: Request, response: Response):
             if existing_user:
                 raise HTTPException(400, detail=ERROR_MESSAGES.EMAIL_TAKEN)
 
-            picture_claim = webui_app.state.config.OAUTH_PICTURE_CLAIM
+            picture_claim = Falcor_app.state.config.OAUTH_PICTURE_CLAIM
             picture_url = user_data.get(picture_claim, "")
             if picture_url:
                 # Download the profile image into a base64 string
@@ -2143,11 +2142,11 @@ async def oauth_callback(provider: str, request: Request, response: Response):
                     picture_url = ""
             if not picture_url:
                 picture_url = "/user.png"
-            username_claim = webui_app.state.config.OAUTH_USERNAME_CLAIM
+            username_claim = Falcor_app.state.config.OAUTH_USERNAME_CLAIM
             role = (
                 "admin"
                 if Users.get_num_users() == 0
-                else webui_app.state.config.DEFAULT_USER_ROLE
+                else Falcor_app.state.config.DEFAULT_USER_ROLE
             )
             user = Auths.insert_new_auth(
                 email=email,
@@ -2160,9 +2159,9 @@ async def oauth_callback(provider: str, request: Request, response: Response):
                 oauth_sub=provider_sub,
             )
 
-            if webui_app.state.config.WEBHOOK_URL:
+            if Falcor_app.state.config.WEBHOOK_URL:
                 post_webhook(
-                    webui_app.state.config.WEBHOOK_URL,
+                    Falcor_app.state.config.WEBHOOK_URL,
                     WEBHOOK_MESSAGES.USER_SIGNUP(user.name),
                     {
                         "action": "signup",
@@ -2177,7 +2176,7 @@ async def oauth_callback(provider: str, request: Request, response: Response):
 
     jwt_token = create_token(
         data={"id": user.id},
-        expires_delta=parse_duration(webui_app.state.config.JWT_EXPIRES_IN),
+        expires_delta=parse_duration(Falcor_app.state.config.JWT_EXPIRES_IN),
     )
 
     # Set the cookie token
@@ -2195,8 +2194,8 @@ async def oauth_callback(provider: str, request: Request, response: Response):
 @app.get("/manifest.json")
 async def get_manifest_json():
     return {
-        "name": WEBUI_NAME,
-        "short_name": WEBUI_NAME,
+        "name": Falcor_NAME,
+        "short_name": Falcor_NAME,
         "start_url": "/",
         "display": "standalone",
         "background_color": "#343541",
@@ -2222,12 +2221,12 @@ async def get_manifest_json():
 async def get_opensearch_xml():
     xml_content = rf"""
     <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
-    <ShortName>{WEBUI_NAME}</ShortName>
-    <Description>Search {WEBUI_NAME}</Description>
+    <ShortName>{Falcor_NAME}</ShortName>
+    <Description>Search {Falcor_NAME}</Description>
     <InputEncoding>UTF-8</InputEncoding>
-    <Image width="16" height="16" type="image/x-icon">{WEBUI_URL}/static/favicon.png</Image>
-    <Url type="text/html" method="get" template="{WEBUI_URL}/?q={"{searchTerms}"}"/>
-    <moz:SearchForm>{WEBUI_URL}</moz:SearchForm>
+    <Image width="16" height="16" type="image/x-icon">{Falcor_URL}/static/favicon.png</Image>
+    <Url type="text/html" method="get" template="{Falcor_URL}/?q={"{searchTerms}"}"/>
+    <moz:SearchForm>{Falcor_URL}</moz:SearchForm>
     </OpenSearchDescription>
     """
     return Response(content=xml_content, media_type="application/xml")

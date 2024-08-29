@@ -10,7 +10,7 @@ from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
-import apps.webui.internal.db
+import apps.Falcor.internal.db
 
 
 # revision identifiers, used by Alembic.

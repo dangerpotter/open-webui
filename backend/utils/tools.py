@@ -2,9 +2,9 @@ import inspect
 import logging
 from typing import Awaitable, Callable, get_type_hints
 
-from apps.webui.models.tools import Tools
-from apps.webui.models.users import UserModel
-from apps.webui.utils import load_toolkit_module_by_id
+from apps.Falcor.models.tools import Tools
+from apps.Falcor.models.users import UserModel
+from apps.Falcor.utils import load_toolkit_module_by_id
 
 from utils.schemas import json_schema_to_model
 
@@ -31,7 +31,7 @@ def apply_extra_params_to_tool_function(
 
 # Mutation on extra_params
 def get_tools(
-    webui_app, tool_ids: list[str], user: UserModel, extra_params: dict
+    Falcor_app, tool_ids: list[str], user: UserModel, extra_params: dict
 ) -> dict[str, dict]:
     tools = {}
     for tool_id in tool_ids:
@@ -39,10 +39,10 @@ def get_tools(
         if toolkit is None:
             continue
 
-        module = webui_app.state.TOOLS.get(tool_id, None)
+        module = Falcor_app.state.TOOLS.get(tool_id, None)
         if module is None:
             module, _ = load_toolkit_module_by_id(tool_id)
-            webui_app.state.TOOLS[tool_id] = module
+            Falcor_app.state.TOOLS[tool_id] = module
 
         extra_params["__id__"] = tool_id
         if hasattr(module, "valves") and hasattr(module, "Valves"):

@@ -24,7 +24,7 @@ import requests
 import shutil
 
 
-from apps.webui.internal.db import Base, get_db
+from apps.Falcor.internal.db import Base, get_db
 
 from constants import ERROR_MESSAGES
 
@@ -38,19 +38,19 @@ from env import (
     DATA_DIR,
     BACKEND_DIR,
     FRONTEND_BUILD_DIR,
-    WEBUI_NAME,
-    WEBUI_URL,
-    WEBUI_FAVICON_URL,
-    WEBUI_BUILD_HASH,
+    Falcor_NAME,
+    Falcor_URL,
+    Falcor_FAVICON_URL,
+    Falcor_BUILD_HASH,
     CONFIG_DATA,
     DATABASE_URL,
     CHANGELOG,
-    WEBUI_AUTH,
-    WEBUI_AUTH_TRUSTED_EMAIL_HEADER,
-    WEBUI_AUTH_TRUSTED_NAME_HEADER,
-    WEBUI_SECRET_KEY,
-    WEBUI_SESSION_COOKIE_SAME_SITE,
-    WEBUI_SESSION_COOKIE_SECURE,
+    Falcor_AUTH,
+    Falcor_AUTH_TRUSTED_EMAIL_HEADER,
+    Falcor_AUTH_TRUSTED_NAME_HEADER,
+    Falcor_SECRET_KEY,
+    Falcor_SESSION_COOKIE_SAME_SITE,
+    Falcor_SESSION_COOKIE_SECURE,
     log,
 )
 
@@ -262,7 +262,7 @@ class AppConfig:
 
 
 ####################################
-# WEBUI_AUTH (Required for security)
+# Falcor_AUTH (Required for security)
 ####################################
 
 JWT_EXPIRES_IN = PersistentConfig(
@@ -472,12 +472,12 @@ CUSTOM_NAME = os.environ.get("CUSTOM_NAME", "")
 
 if CUSTOM_NAME:
     try:
-        r = requests.get(f"https://api.openwebui.com/api/v1/custom/{CUSTOM_NAME}")
+        r = requests.get(f"https://api.Falcor.com/api/v1/custom/{CUSTOM_NAME}")
         data = r.json()
         if r.ok:
             if "logo" in data:
-                WEBUI_FAVICON_URL = url = (
-                    f"https://api.openwebui.com{data['logo']}"
+                Falcor_FAVICON_URL = url = (
+                    f"https://api.Falcor.com{data['logo']}"
                     if data["logo"][0] == "/"
                     else data["logo"]
                 )
@@ -490,7 +490,7 @@ if CUSTOM_NAME:
 
             if "splash" in data:
                 url = (
-                    f"https://api.openwebui.com{data['splash']}"
+                    f"https://api.Falcor.com{data['splash']}"
                     if data["splash"][0] == "/"
                     else data["splash"]
                 )
@@ -501,7 +501,7 @@ if CUSTOM_NAME:
                         r.raw.decode_content = True
                         shutil.copyfileobj(r.raw, f)
 
-            WEBUI_NAME = data["name"]
+            Falcor_NAME = data["name"]
     except Exception as e:
         log.exception(e)
         pass
@@ -620,13 +620,13 @@ if OLLAMA_BASE_URL == "" and OLLAMA_API_BASE_URL != "":
 if ENV == "prod":
     if OLLAMA_BASE_URL == "/ollama" and not K8S_FLAG:
         if USE_OLLAMA_DOCKER.lower() == "true":
-            # if you use all-in-one docker container (Open WebUI + Ollama)
+            # if you use all-in-one docker container (Falcor + Ollama)
             # with the docker build arg USE_OLLAMA=true (--build-arg="USE_OLLAMA=true") this only works with http://localhost:11434
             OLLAMA_BASE_URL = "http://localhost:11434"
         else:
             OLLAMA_BASE_URL = "http://host.docker.internal:11434"
     elif K8S_FLAG:
-        OLLAMA_BASE_URL = "http://ollama-service.open-webui.svc.cluster.local:11434"
+        OLLAMA_BASE_URL = "http://ollama-service.Falcor.svc.cluster.local:11434"
 
 
 OLLAMA_BASE_URLS = os.environ.get("OLLAMA_BASE_URLS", "")
@@ -689,7 +689,7 @@ except Exception:
 OPENAI_API_BASE_URL = "https://api.openai.com/v1"
 
 ####################################
-# WEBUI
+# Falcor
 ####################################
 
 ENABLE_SIGNUP = PersistentConfig(
@@ -697,7 +697,7 @@ ENABLE_SIGNUP = PersistentConfig(
     "ui.enable_signup",
     (
         False
-        if not WEBUI_AUTH
+        if not Falcor_AUTH
         else os.environ.get("ENABLE_SIGNUP", "True").lower() == "true"
     ),
 )
@@ -862,13 +862,13 @@ class BannerModel(BaseModel):
 
 
 try:
-    banners = json.loads(os.environ.get("WEBUI_BANNERS", "[]"))
+    banners = json.loads(os.environ.get("Falcor_BANNERS", "[]"))
     banners = [BannerModel(**banner) for banner in banners]
 except Exception as e:
-    print(f"Error loading WEBUI_BANNERS: {e}")
+    print(f"Error loading Falcor_BANNERS: {e}")
     banners = []
 
-WEBUI_BANNERS = PersistentConfig("WEBUI_BANNERS", "ui.banners", banners)
+Falcor_BANNERS = PersistentConfig("Falcor_BANNERS", "ui.banners", banners)
 
 
 SHOW_ADMIN_DETAILS = PersistentConfig(

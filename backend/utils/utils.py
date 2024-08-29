@@ -1,7 +1,7 @@
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import HTTPException, status, Depends, Request
 
-from apps.webui.models.users import Users
+from apps.Falcor.models.users import Users
 
 from typing import Union, Optional
 from constants import ERROR_MESSAGES
@@ -10,12 +10,12 @@ from datetime import datetime, timedelta, UTC
 import jwt
 import uuid
 import logging
-from env import WEBUI_SECRET_KEY
+from env import Falcor_SECRET_KEY
 
 logging.getLogger("passlib").setLevel(logging.ERROR)
 
 
-SESSION_SECRET = WEBUI_SECRET_KEY
+SESSION_SECRET = Falcor_SECRET_KEY
 ALGORITHM = "HS256"
 
 ##############

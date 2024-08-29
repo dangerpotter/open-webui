@@ -74,13 +74,13 @@ for source in log_sources:
 log.setLevel(SRC_LOG_LEVELS["CONFIG"])
 
 
-WEBUI_NAME = os.environ.get("WEBUI_NAME", "Open WebUI")
-if WEBUI_NAME != "Open WebUI":
-    WEBUI_NAME += " (Open WebUI)"
+Falcor_NAME = os.environ.get("Falcor_NAME", "Falcor")
+if Falcor_NAME != "Falcor":
+    Falcor_NAME += " (Falcor)"
 
-WEBUI_URL = os.environ.get("WEBUI_URL", "http://localhost:3000")
+Falcor_URL = os.environ.get("Falcor_URL", "http://localhost:3000")
 
-WEBUI_FAVICON_URL = "https://openwebui.com/favicon.png"
+Falcor_FAVICON_URL = "https://Falcor.com/favicon.png"
 
 
 ####################################
@@ -93,7 +93,7 @@ try:
     PACKAGE_DATA = json.loads((BASE_DIR / "package.json").read_text())
 except Exception:
     try:
-        PACKAGE_DATA = {"version": importlib.metadata.version("open-webui")}
+        PACKAGE_DATA = {"version": importlib.metadata.version("Falcor")}
     except importlib.metadata.PackageNotFoundError:
         PACKAGE_DATA = {"version": "0.0.0"}
 
@@ -125,7 +125,7 @@ try:
         changelog_content = file.read()
 
 except Exception:
-    changelog_content = (pkgutil.get_data("open_webui", "CHANGELOG.md") or b"").decode()
+    changelog_content = (pkgutil.get_data("open_Falcor", "CHANGELOG.md") or b"").decode()
 
 
 # Convert markdown content to HTML
@@ -168,10 +168,10 @@ CHANGELOG = changelog_json
 SAFE_MODE = os.environ.get("SAFE_MODE", "false").lower() == "true"
 
 ####################################
-# WEBUI_BUILD_HASH
+# Falcor_BUILD_HASH
 ####################################
 
-WEBUI_BUILD_HASH = os.environ.get("WEBUI_BUILD_HASH", "dev-build")
+Falcor_BUILD_HASH = os.environ.get("Falcor_BUILD_HASH", "dev-build")
 
 ####################################
 # DATA/FRONTEND BUILD DIR
@@ -204,12 +204,12 @@ except Exception:
 # Check if the file exists
 if os.path.exists(f"{DATA_DIR}/ollama.db"):
     # Rename the file
-    os.rename(f"{DATA_DIR}/ollama.db", f"{DATA_DIR}/webui.db")
-    log.info("Database migrated from Ollama-WebUI successfully.")
+    os.rename(f"{DATA_DIR}/ollama.db", f"{DATA_DIR}/Falcor.db")
+    log.info("Database migrated from Ollama-Falcor successfully.")
 else:
     pass
 
-DATABASE_URL = os.environ.get("DATABASE_URL", f"sqlite:///{DATA_DIR}/webui.db")
+DATABASE_URL = os.environ.get("DATABASE_URL", f"sqlite:///{DATA_DIR}/Falcor.db")
 
 # Replace the postgres:// with postgresql://
 if "postgres://" in DATABASE_URL:
@@ -217,36 +217,36 @@ if "postgres://" in DATABASE_URL:
 
 
 ####################################
-# WEBUI_AUTH (Required for security)
+# Falcor_AUTH (Required for security)
 ####################################
 
-WEBUI_AUTH = os.environ.get("WEBUI_AUTH", "True").lower() == "true"
-WEBUI_AUTH_TRUSTED_EMAIL_HEADER = os.environ.get(
-    "WEBUI_AUTH_TRUSTED_EMAIL_HEADER", None
+Falcor_AUTH = os.environ.get("Falcor_AUTH", "True").lower() == "true"
+Falcor_AUTH_TRUSTED_EMAIL_HEADER = os.environ.get(
+    "Falcor_AUTH_TRUSTED_EMAIL_HEADER", None
 )
-WEBUI_AUTH_TRUSTED_NAME_HEADER = os.environ.get("WEBUI_AUTH_TRUSTED_NAME_HEADER", None)
+Falcor_AUTH_TRUSTED_NAME_HEADER = os.environ.get("Falcor_AUTH_TRUSTED_NAME_HEADER", None)
 
 
 ####################################
-# WEBUI_SECRET_KEY
+# Falcor_SECRET_KEY
 ####################################
 
-WEBUI_SECRET_KEY = os.environ.get(
-    "WEBUI_SECRET_KEY",
+Falcor_SECRET_KEY = os.environ.get(
+    "Falcor_SECRET_KEY",
     os.environ.get(
-        "WEBUI_JWT_SECRET_KEY", "t0p-s3cr3t"
+        "Falcor_JWT_SECRET_KEY", "t0p-s3cr3t"
     ),  # DEPRECATED: remove at next major version
 )
 
-WEBUI_SESSION_COOKIE_SAME_SITE = os.environ.get(
-    "WEBUI_SESSION_COOKIE_SAME_SITE",
-    os.environ.get("WEBUI_SESSION_COOKIE_SAME_SITE", "lax"),
+Falcor_SESSION_COOKIE_SAME_SITE = os.environ.get(
+    "Falcor_SESSION_COOKIE_SAME_SITE",
+    os.environ.get("Falcor_SESSION_COOKIE_SAME_SITE", "lax"),
 )
 
-WEBUI_SESSION_COOKIE_SECURE = os.environ.get(
-    "WEBUI_SESSION_COOKIE_SECURE",
-    os.environ.get("WEBUI_SESSION_COOKIE_SECURE", "false").lower() == "true",
+Falcor_SESSION_COOKIE_SECURE = os.environ.get(
+    "Falcor_SESSION_COOKIE_SECURE",
+    os.environ.get("Falcor_SESSION_COOKIE_SECURE", "false").lower() == "true",
 )
 
-if WEBUI_AUTH and WEBUI_SECRET_KEY == "":
+if Falcor_AUTH and Falcor_SECRET_KEY == "":
     raise ValueError(ERROR_MESSAGES.ENV_VAR_NOT_FOUND)

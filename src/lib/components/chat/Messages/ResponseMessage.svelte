@@ -19,7 +19,7 @@
 		cleanText,
 		getMessageContentParts
 	} from '$lib/utils';
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { Falcor_BASE_URL } from '$lib/constants';
 
 	import Name from './Name.svelte';
 	import ProfileImage from './ProfileImage.svelte';
@@ -311,7 +311,7 @@
 	>
 		<ProfileImage
 			src={model?.info?.meta?.profile_image_url ??
-				($i18n.language === 'dg-DG' ? `/doge.png` : `${WEBUI_BASE_URL}/static/favicon.png`)}
+				($i18n.language === 'dg-DG' ? `/doge.png` : `${Falcor_BASE_URL}/static/favicon.png`)}
 		/>
 
 		<div class="w-full overflow-hidden pl-1">
@@ -779,7 +779,7 @@
 													await rateMessage(message.id, 1);
 
 													(model?.actions ?? [])
-														.filter((action) => action?.__webui__ ?? false)
+														.filter((action) => action?.__Falcor__ ?? false)
 														.forEach((action) => {
 															dispatch('action', {
 																id: action.id,
@@ -828,7 +828,7 @@
 													await rateMessage(message.id, -1);
 
 													(model?.actions ?? [])
-														.filter((action) => action?.__webui__ ?? false)
+														.filter((action) => action?.__Falcor__ ?? false)
 														.forEach((action) => {
 															dispatch('action', {
 																id: action.id,
@@ -878,7 +878,7 @@
 													continueGeneration();
 
 													(model?.actions ?? [])
-														.filter((action) => action?.__webui__ ?? false)
+														.filter((action) => action?.__Falcor__ ?? false)
 														.forEach((action) => {
 															dispatch('action', {
 																id: action.id,
@@ -925,7 +925,7 @@
 													regenerateResponse(message);
 
 													(model?.actions ?? [])
-														.filter((action) => action?.__webui__ ?? false)
+														.filter((action) => action?.__Falcor__ ?? false)
 														.forEach((action) => {
 															dispatch('action', {
 																id: action.id,
@@ -956,7 +956,7 @@
 											</button>
 										</Tooltip>
 
-										{#each (model?.actions ?? []).filter((action) => !(action?.__webui__ ?? false)) as action}
+										{#each (model?.actions ?? []).filter((action) => !(action?.__Falcor__ ?? false)) as action}
 											<Tooltip content={action.name} placement="bottom">
 												<button
 													type="button"
@@ -997,7 +997,7 @@
 								updateChatMessages();
 
 								(model?.actions ?? [])
-									.filter((action) => action?.__webui__ ?? false)
+									.filter((action) => action?.__Falcor__ ?? false)
 									.forEach((action) => {
 										dispatch('action', {
 											id: action.id,
