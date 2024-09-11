@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference path="../support/index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 export const adminUser = {
 	name: 'Admin User',

@@ -23,8 +23,8 @@
 	import {
 		SUPPORTED_FILE_TYPE,
 		SUPPORTED_FILE_EXTENSIONS,
-		WEBUI_BASE_URL,
-		WEBUI_API_BASE_URL
+		Falcor_BASE_URL,
+		Falcor_API_BASE_URL
 	} from '$lib/constants';
 
 	import Tooltip from '../common/Tooltip.svelte';
@@ -127,7 +127,7 @@
 				fileItem.status = 'uploaded';
 				fileItem.file = uploadedFile;
 				fileItem.id = uploadedFile.id;
-				fileItem.url = `${WEBUI_API_BASE_URL}/files/${uploadedFile.id}`;
+				fileItem.url = `${Falcor_API_BASE_URL}/files/${uploadedFile.id}`;
 
 				// TODO: Check if tools & functions have files support to skip this step to delegate file processing
 				// Default Upload to VectorDB
@@ -311,7 +311,7 @@
 									?.profile_image_url ??
 									($i18n.language === 'dg-DG'
 										? `/doge.png`
-										: `${WEBUI_BASE_URL}/static/favicon.png`)}
+										: `${Falcor_BASE_URL}/static/favicon.png`)}
 							/>
 							<div>
 								Talking to <span class=" font-medium">{atSelectedModel.name}</span>

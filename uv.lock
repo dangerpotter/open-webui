@@ -2119,7 +2119,7 @@ wheels = [
 ]
 
 [[package]]
-name = "open-webui"
+name = "Falcor"
 version = "0.3.17.dev3"
 source = { editable = "." }
 dependencies = [

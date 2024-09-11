@@ -9,7 +9,7 @@
 
 	import type { Unsubscriber, Writable } from 'svelte/store';
 	import type { i18n as i18nType } from 'i18next';
-	import { WEBUI_BASE_URL } from '$lib/constants';
+	import { Falcor_BASE_URL } from '$lib/constants';
 
 	import {
 		chatId,
@@ -19,7 +19,7 @@
 		models,
 		settings,
 		showSidebar,
-		WEBUI_NAME,
+		Falcor_NAME,
 		banners,
 		user,
 		socket,
@@ -995,7 +995,7 @@
 								if ($settings.notificationEnabled && !document.hasFocus()) {
 									const notification = new Notification(`${model.id}`, {
 										body: responseMessage.content,
-										icon: `${WEBUI_BASE_URL}/static/favicon.png`
+										icon: `${Falcor_BASE_URL}/static/favicon.png`
 									});
 								}
 
@@ -1212,7 +1212,7 @@
 					chat_id: $chatId,
 					id: responseMessageId
 				},
-				`${WEBUI_BASE_URL}/api`
+				`${Falcor_BASE_URL}/api`
 			);
 
 			// Wait until history/message have been updated
@@ -1303,7 +1303,7 @@
 				if ($settings.notificationEnabled && !document.hasFocus()) {
 					const notification = new Notification(`${model.id}`, {
 						body: responseMessage.content,
-						icon: `${WEBUI_BASE_URL}/static/favicon.png`
+						icon: `${Falcor_BASE_URL}/static/favicon.png`
 					});
 				}
 
@@ -1654,8 +1654,8 @@
 <svelte:head>
 	<title>
 		{title
-			? `${title.length > 30 ? `${title.slice(0, 30)}...` : title} | ${$WEBUI_NAME}`
-			: `${$WEBUI_NAME}`}
+			? `${title.length > 30 ? `${title.slice(0, 30)}...` : title} | ${$Falcor_NAME}`
+			: `${$Falcor_NAME}`}
 	</title>
 </svelte:head>
 
