@@ -13,8 +13,6 @@
 
 Falcor is an [extensible](https://github.com/Falcor/pipelines), feature-rich, and user-friendly self-hosted Falcor designed to operate entirely offline. It supports various LLM runners, including Ollama and OpenAI-compatible APIs. For more information, be sure to check out our [Falcor Documentation](https://docs.Falcor.com/).
 
-![Falcor Demo](./demo.gif)
-
 ## Key Features of Falcor ⭐
 
 - 🚀 **Effortless Setup**: Install seamlessly using Docker or Kubernetes (kubectl, kustomize or helm) for a hassle-free experience with support for both `:ollama` and `:cuda` tagged images.
@@ -183,30 +181,13 @@ If you want to try out the latest bleeding-edge features and are okay with occas
 docker run -d -p 3000:8080 -v Falcor:/app/backend/data --name Falcor --add-host=host.docker.internal:host-gateway --restart always ghcr.io/dangerpotter/falcor:dev
 ```
 
-## What's Next? 🌟
-
-Discover upcoming features on our roadmap in the [Falcor Documentation](https://docs.Falcor.com/roadmap/).
-
 ## Supporters ✨
 
 A big shoutout to our amazing supporters who's helping to make this project possible! 🙏
 
-### Platinum Sponsors 🤍
-
-- We're looking for Sponsors!
-
-### Acknowledgments
-
-Special thanks to [Prof. Lawrence Kim](https://www.lhkim.com/) and [Prof. Nick Vincent](https://www.nickmvincent.com/) for their invaluable support and guidance in shaping this project into a research endeavor. Grateful for your mentorship throughout the journey! 🙌
-
 ## License 📜
 
 This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details. 📄
-
-## Support 💬
-
-If you have any questions, suggestions, or need assistance, please open an issue or join our
-[Falcor Discord community](https://discord.gg/5rJgQTnV4s) to connect with us! 🤝
 
 ## Star History
 
