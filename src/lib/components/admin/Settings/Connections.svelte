@@ -420,7 +420,7 @@
 						{$i18n.t('Trouble accessing Ollama?')}
 						<a
 							class=" text-gray-300 font-medium underline"
-							href="https://github.com/dangerpotter/Falcor#troubleshooting"
+							href="https://github.com/dangerpotter/falcor#troubleshooting"
 							target="_blank"
 						>
 							{$i18n.t('Click here for help.')}

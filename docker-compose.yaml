@@ -14,7 +14,7 @@ services:
       args:
         OLLAMA_BASE_URL: '/ollama'
       dockerfile: Dockerfile
-    image: ghcr.io/dangerpotter/Falcor:${Falcor_DOCKER_TAG-main}
+    image: ghcr.io/dangerpotter/falcor:${Falcor_DOCKER_TAG-main}
     container_name: Falcor
     volumes:
       - Falcor:/app/backend/data

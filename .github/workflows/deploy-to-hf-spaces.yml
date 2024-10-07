@@ -56,4 +56,4 @@ jobs:
           rm demo.gif
           git add .
           git commit -m "GitHub deploy: ${{ github.sha }}"
-          git push --force https://Falcor:${HF_TOKEN}@huggingface.co/spaces/dangerpotter/Falcor main
+          git push --force https://Falcor:${HF_TOKEN}@huggingface.co/spaces/dangerpotter/falcor main

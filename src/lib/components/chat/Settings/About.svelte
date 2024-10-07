@@ -59,7 +59,7 @@
 						</Tooltip>
 
 						<a
-							href="https://github.com/dangerpotter/Falcor/releases/tag/v{version.latest}"
+							href="https://github.com/dangerpotter/falcor/releases/tag/v{version.latest}"
 							target="_blank"
 						>
 							{updateAvailable === null
@@ -106,10 +106,10 @@
 
 		<hr class="dark:border-gray-850" />
 
-		<a href="https://github.com/dangerpotter/Falcor" target="_blank">
+		<a href="https://github.com/dangerpotter/falcor" target="_blank">
 			<img
 				alt="Github Repo"
-				src="https://img.shields.io/github/stars/dangerpotter/Falcor?style=social&label=Star us on Github"
+				src="https://img.shields.io/github/stars/dangerpotter/falcor?style=social&label=Star us on Github"
 			/>
 		</a>
 	</div>

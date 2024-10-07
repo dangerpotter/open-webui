@@ -37,7 +37,7 @@ Reports not submitted through our designated GitHub repository will be disregard
 
 We regularly audit our internal processes and system architecture for vulnerabilities using a combination of automated and manual testing techniques. We are also planning to implement SAST and SCA scans in our project soon.
 
-For immediate concerns or detailed reports that meet our guidelines, please create an issue in our [issue tracker](/dangerpotter/Falcor/issues) or contact us on [Discord](https://discord.gg/5rJgQTnV4s).
+For immediate concerns or detailed reports that meet our guidelines, please create an issue in our [issue tracker](/dangerpotter/falcor/issues) or contact us on [Discord](https://discord.gg/5rJgQTnV4s).
 
 ---
 

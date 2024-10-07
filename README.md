@@ -1,12 +1,12 @@
 # Falcor 👋
 
-![GitHub stars](https://img.shields.io/github/stars/dangerpotter/Falcor?style=social)
-![GitHub forks](https://img.shields.io/github/forks/dangerpotter/Falcor?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/dangerpotter/Falcor?style=social)
-![GitHub repo size](https://img.shields.io/github/repo-size/dangerpotter/Falcor)
-![GitHub language count](https://img.shields.io/github/languages/count/dangerpotter/Falcor)
-![GitHub top language](https://img.shields.io/github/languages/top/dangerpotter/Falcor)
-![GitHub last commit](https://img.shields.io/github/last-commit/dangerpotter/Falcor?color=red)
+![GitHub stars](https://img.shields.io/github/stars/dangerpotter/falcor?style=social)
+![GitHub forks](https://img.shields.io/github/forks/dangerpotter/falcor?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/dangerpotter/falcor?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/dangerpotter/falcor)
+![GitHub language count](https://img.shields.io/github/languages/count/dangerpotter/falcor)
+![GitHub top language](https://img.shields.io/github/languages/top/dangerpotter/falcor)
+![GitHub last commit](https://img.shields.io/github/last-commit/dangerpotter/falcor?color=red)
 ![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Follama-Falcor%2Follama-wbui&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)
 [![Discord](https://img.shields.io/badge/Discord-Falcor-blue?logo=discord&logoColor=white)](https://discord.gg/5rJgQTnV4s)
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/tjbck)
@@ -95,7 +95,7 @@ This will start the Falcor server, which you can access at [http://localhost:808
 - **If Ollama is on your computer**, use this command:
 
   ```bash
-  docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/Falcor:main
+  docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/falcor:main
   ```
 
 - **If Ollama is on a Different Server**, use this command:
@@ -103,13 +103,13 @@ This will start the Falcor server, which you can access at [http://localhost:808
   To connect to Ollama on another server, change the `OLLAMA_BASE_URL` to the server's URL:
 
   ```bash
-  docker run -d -p 3000:8080 -e OLLAMA_BASE_URL=https://example.com -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/Falcor:main
+  docker run -d -p 3000:8080 -e OLLAMA_BASE_URL=https://example.com -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/falcor:main
   ```
 
 - **To run Falcor with Nvidia GPU support**, use this command:
 
   ```bash
-  docker run -d -p 3000:8080 --gpus all --add-host=host.docker.internal:host-gateway -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/Falcor:cuda
+  docker run -d -p 3000:8080 --gpus all --add-host=host.docker.internal:host-gateway -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/falcor:cuda
   ```
 
 ### Installation for OpenAI API Usage Only
@@ -117,7 +117,7 @@ This will start the Falcor server, which you can access at [http://localhost:808
 - **If you're only using OpenAI API**, use this command:
 
   ```bash
-  docker run -d -p 3000:8080 -e OPENAI_API_KEY=your_secret_key -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/Falcor:main
+  docker run -d -p 3000:8080 -e OPENAI_API_KEY=your_secret_key -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/falcor:main
   ```
 
 ### Installing Falcor with Bundled Ollama Support
@@ -128,14 +128,14 @@ This installation method uses a single container image that bundles Falcor with 
   Utilize GPU resources by running the following command:
 
   ```bash
-  docker run -d -p 3000:8080 --gpus=all -v ollama:/root/.ollama -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/Falcor:ollama
+  docker run -d -p 3000:8080 --gpus=all -v ollama:/root/.ollama -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/falcor:ollama
   ```
 
 - **For CPU Only**:
   If you're not using a GPU, use this command instead:
 
   ```bash
-  docker run -d -p 3000:8080 -v ollama:/root/.ollama -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/Falcor:ollama
+  docker run -d -p 3000:8080 -v ollama:/root/.ollama -v Falcor:/app/backend/data --name Falcor --restart always ghcr.io/dangerpotter/falcor:ollama
   ```
 
 Both commands facilitate a built-in, hassle-free installation of both Falcor and Ollama, ensuring that you can get everything up and running swiftly.
@@ -157,7 +157,7 @@ If you're experiencing connection issues, it’s often due to the Falcor docker 
 **Example Docker Command**:
 
 ```bash
-docker run -d --network=host -v Falcor:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name Falcor --restart always ghcr.io/dangerpotter/Falcor:main
+docker run -d --network=host -v Falcor:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name Falcor --restart always ghcr.io/dangerpotter/falcor:main
 ```
 
 ### Keeping Your Docker Installation Up-to-Date
@@ -180,7 +180,7 @@ Check our Migration Guide available in our [Falcor Documentation](https://docs.F
 If you want to try out the latest bleeding-edge features and are okay with occasional instability, you can use the `:dev` tag like this:
 
 ```bash
-docker run -d -p 3000:8080 -v Falcor:/app/backend/data --name Falcor --add-host=host.docker.internal:host-gateway --restart always ghcr.io/dangerpotter/Falcor:dev
+docker run -d -p 3000:8080 -v Falcor:/app/backend/data --name Falcor --add-host=host.docker.internal:host-gateway --restart always ghcr.io/dangerpotter/falcor:dev
 ```
 
 ## What's Next? 🌟
@@ -210,11 +210,11 @@ If you have any questions, suggestions, or need assistance, please open an issue
 
 ## Star History
 
-<a href="https://star-history.com/#dangerpotter/Falcor&Date">
+<a href="https://star-history.com/#dangerpotter/falcor&Date">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=dangerpotter/Falcor&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=dangerpotter/Falcor&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=dangerpotter/Falcor&type=Date" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=dangerpotter/falcor&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=dangerpotter/falcor&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=dangerpotter/falcor&type=Date" />
   </picture>
 </a>
 

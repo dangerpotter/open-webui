@@ -15,7 +15,7 @@ If you're experiencing connection issues, it’s often due to the Falcor docker 
 **Example Docker Command**:
 
 ```bash
-docker run -d --network=host -v Falcor:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name Falcor --restart always ghcr.io/dangerpotter/Falcor:main
+docker run -d --network=host -v Falcor:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name Falcor --restart always ghcr.io/dangerpotter/falcor:main
 ```
 
 ### Error on Slow Reponses for Ollama

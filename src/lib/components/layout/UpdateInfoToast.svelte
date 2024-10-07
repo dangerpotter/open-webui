@@ -21,7 +21,7 @@
 			LATEST_VERSION: version.latest
 		})}
 
-		<a href="https://github.com/dangerpotter/Falcor/releases" target="_blank" class="underline">
+		<a href="https://github.com/dangerpotter/falcor/releases" target="_blank" class="underline">
 			{$i18n.t('Update for the latest features and improvements.')}</a
 		>
 	</div>

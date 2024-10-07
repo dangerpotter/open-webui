@@ -187,7 +187,7 @@ ___________      .__
 
       
 V3.31 - The luck dragon has been summoned.
-https://github.com/dangerpotter/Falcor
+https://github.com/dangerpotter/falcor
 
 """
 )
@@ -2185,7 +2185,7 @@ async def get_app_latest_release_version():
         timeout = aiohttp.ClientTimeout(total=1)
         async with aiohttp.ClientSession(timeout=timeout, trust_env=True) as session:
             async with session.get(
-                "https://api.github.com/repos/dangerpotter/Falcor/releases/latest"
+                "https://api.github.com/repos/dangerpotter/falcor/releases/latest"
             ) as response:
                 response.raise_for_status()
                 data = await response.json()

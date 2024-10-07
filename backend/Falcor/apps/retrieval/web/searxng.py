@@ -67,7 +67,7 @@ def search_searxng(
     response = requests.get(
         query_url,
         headers={
-            "User-Agent": "Falcor (https://github.com/dangerpotter/Falcor) RAG Bot",
+            "User-Agent": "Falcor (https://github.com/dangerpotter/falcor) RAG Bot",
             "Accept": "text/html",
             "Accept-Encoding": "gzip, deflate",
             "Accept-Language": "en-US,en;q=0.5",
