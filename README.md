@@ -220,4 +220,4 @@ If you have any questions, suggestions, or need assistance, please open an issue
 
 ---
 
-Modified from Open WebUI for Capella University by [Timothy Jaeryang Baek](https://github.com/dangerpotter) - Let's make Falcor even more amazing together! 💪
+Modified from Open WebUI for Capella University by [Austin Potter](https://github.com/dangerpotter) - Let's make Falcor even more amazing together! 💪

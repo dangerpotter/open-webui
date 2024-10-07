@@ -2,7 +2,7 @@
 name = "Falcor"
 description = "Falcor"
 authors = [
-    { name = "Timothy Jaeryang Baek", email = "tim@Falcor.com" }
+    { name = "Austin Potter", email = "tim@Falcor.com" }
 ]
 license = { file = "LICENSE" }
 dependencies = [
