@@ -158,18 +158,6 @@ If you're experiencing connection issues, it’s often due to the Falcor docker 
 docker run -d --network=host -v Falcor:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name Falcor --restart always ghcr.io/dangerpotter/falcor:main
 ```
 
-### Keeping Your Docker Installation Up-to-Date
-
-In case you want to update your local Docker installation to the latest version, you can do it with [Watchtower](https://containrrr.dev/watchtower/):
-
-```bash
-docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --run-once Falcor
-```
-
-In the last part of the command, replace `Falcor` with your container name if it is different.
-
-Check our Migration Guide available in our [Falcor Documentation](https://docs.Falcor.com/tutorials/migration/).
-
 ### Using the Dev Branch 🌙
 
 > [!WARNING]
