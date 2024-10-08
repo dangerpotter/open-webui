@@ -57,26 +57,6 @@ Don't forget to explore our sibling project, [Falcor Community](https://Falcor.c
 
 ## How to Install 🚀
 
-### Installation via Python pip 🐍
-
-Falcor can be installed using pip, the Python package installer. Before proceeding, ensure you're using **Python 3.11** to avoid compatibility issues.
-
-1. **Install Falcor**:
-   Open your terminal and run the following command to install Falcor:
-
-   ```bash
-   pip install Falcor
-   ```
-
-2. **Running Falcor**:
-   After installation, you can start Falcor by executing:
-
-   ```bash
-   Falcor serve
-   ```
-
-This will start the Falcor server, which you can access at [http://localhost:8080](http://localhost:8080)
-
 ### Quick Start with Docker 🐳
 
 > [!NOTE]  
