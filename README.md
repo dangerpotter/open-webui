@@ -10,7 +10,7 @@
 ![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Follama-Falcor%2Follama-wbui&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/tjbck)
 
-Falcor is an [extensible](https://github.com/openwebui/pipelines), feature-rich, and user-friendly self-hosted Falcor designed to operate entirely offline. It supports various LLM runners, including Ollama and OpenAI-compatible APIs.
+Falcor is an [extensible](https://github.com/open-webui/pipelines), feature-rich, and user-friendly self-hosted Falcor designed to operate entirely offline. It supports various LLM runners, including Ollama and OpenAI-compatible APIs.
 
 ## Key Features of Falcor ⭐
 
@@ -18,7 +18,7 @@ Falcor is an [extensible](https://github.com/openwebui/pipelines), feature-rich,
 
 - 🤝 **Ollama/OpenAI API Integration**: Effortlessly integrate OpenAI-compatible APIs for versatile conversations alongside Ollama models. Customize the OpenAI API URL to link with **LMStudio, GroqCloud, Mistral, OpenRouter, and more**.
 
-- 🧩 **Pipelines, Falcor Plugin Support**: Seamlessly integrate custom logic and Python libraries into Falcor using [Open WebUI Pipelines Plugin Framework](https://github.com/openwebui/pipelines). Launch your Pipelines instance, set the OpenAI URL to the Pipelines URL, and explore endless possibilities.
+- 🧩 **Pipelines, Falcor Plugin Support**: Seamlessly integrate custom logic and Python libraries into Falcor using [Open WebUI Pipelines Plugin Framework](https://github.com/open-webui/pipelines). Launch your Pipelines instance, set the OpenAI URL to the Pipelines URL, and explore endless possibilities.
 
 - 📱 **Responsive Design**: Enjoy a seamless experience across Desktop PC, Laptop, and Mobile devices.
 
