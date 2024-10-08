@@ -120,13 +120,6 @@ Both commands facilitate a built-in, hassle-free installation of both Falcor and
 
 After installation, you can access Falcor at [http://localhost:3000](http://localhost:3000). Enjoy! 😄
 
-### Other Installation Methods
-
-We offer various installation alternatives, including non-Docker native installation methods, Docker Compose, Kustomize, and Helm. Visit our [Falcor Documentation](https://docs.Falcor.com/getting-started/) or join our [Discord community](https://discord.gg/5rJgQTnV4s) for comprehensive guidance.
-
-### Troubleshooting
-
-Encountering connection issues? Our [Falcor Documentation](https://docs.Falcor.com/troubleshooting/) has got you covered. For further assistance and to join our vibrant community, visit the [Falcor Discord](https://discord.gg/5rJgQTnV4s).
 
 #### Falcor: Server Connection Error
 
