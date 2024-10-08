@@ -11,7 +11,7 @@
 [![Discord](https://img.shields.io/badge/Discord-Falcor-blue?logo=discord&logoColor=white)](https://discord.gg/5rJgQTnV4s)
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/tjbck)
 
-Falcor is an [extensible](https://github.com/Falcor/pipelines), feature-rich, and user-friendly self-hosted Falcor designed to operate entirely offline. It supports various LLM runners, including Ollama and OpenAI-compatible APIs. For more information, be sure to check out our [Falcor Documentation](https://docs.Falcor.com/).
+Falcor is an [extensible](https://github.com/Falcor/pipelines), feature-rich, and user-friendly self-hosted Falcor designed to operate entirely offline. It supports various LLM runners, including Ollama and OpenAI-compatible APIs.
 
 ## Key Features of Falcor ⭐
 
@@ -19,7 +19,7 @@ Falcor is an [extensible](https://github.com/Falcor/pipelines), feature-rich, an
 
 - 🤝 **Ollama/OpenAI API Integration**: Effortlessly integrate OpenAI-compatible APIs for versatile conversations alongside Ollama models. Customize the OpenAI API URL to link with **LMStudio, GroqCloud, Mistral, OpenRouter, and more**.
 
-- 🧩 **Pipelines, Falcor Plugin Support**: Seamlessly integrate custom logic and Python libraries into Falcor using [Pipelines Plugin Framework](https://github.com/Falcor/pipelines). Launch your Pipelines instance, set the OpenAI URL to the Pipelines URL, and explore endless possibilities. [Examples](https://github.com/Falcor/pipelines/tree/main/examples) include **Function Calling**, User **Rate Limiting** to control access, **Usage Monitoring** with tools like Langfuse, **Live Translation with LibreTranslate** for multilingual support, **Toxic Message Filtering** and much more.
+- 🧩 **Pipelines, Falcor Plugin Support**: Seamlessly integrate custom logic and Python libraries into Falcor using [Pipelines Plugin Framework](https://github.com/Falcor/pipelines). Launch your Pipelines instance, set the OpenAI URL to the Pipelines URL, and explore endless possibilities.
 
 - 📱 **Responsive Design**: Enjoy a seamless experience across Desktop PC, Laptop, and Mobile devices.
 
@@ -29,7 +29,7 @@ Falcor is an [extensible](https://github.com/Falcor/pipelines), feature-rich, an
 
 - 🎤📹 **Hands-Free Voice/Video Call**: Experience seamless communication with integrated hands-free voice and video call features, allowing for a more dynamic and interactive chat environment.
 
-- 🛠️ **Model Builder**: Easily create Ollama models via the Web UI. Create and add custom characters/agents, customize chat elements, and import models effortlessly through [Falcor Community](https://Falcor.com/) integration.
+- 🛠️ **Model Builder**: Easily create Ollama models via the Web UI. Create and add custom characters/agents, customize chat elements, and import models.
 
 - 🐍 **Native Python Function Calling Tool**: Enhance your LLMs with built-in code editor support in the tools workspace. Bring Your Own Function (BYOF) by simply adding your pure Python functions, enabling seamless integration with LLMs.
 
@@ -49,18 +49,12 @@ Falcor is an [extensible](https://github.com/Falcor/pipelines), feature-rich, an
 
 - 🌟 **Continuous Updates**: We are committed to improving Falcor with regular updates, fixes, and new features.
 
-Want to learn more about Falcor's features? Check out our [Falcor documentation](https://docs.Falcor.com/features) for a comprehensive overview!
-
-## 🔗 Also Check Out Falcor Community!
-
-Don't forget to explore our sibling project, [Falcor Community](https://Falcor.com/), where you can discover, download, and explore customized Modelfiles. Falcor Community offers a wide range of exciting possibilities for enhancing your chat interactions with Falcor! 🚀
-
 ## How to Install 🚀
 
 ### Quick Start with Docker 🐳
 
 > [!NOTE]  
-> Please note that for certain Docker environments, additional configurations might be needed. If you encounter any connection issues, our detailed guide on [Falcor Documentation](https://docs.Falcor.com/) is ready to assist you.
+> Please note that for certain Docker environments, additional configurations might be needed.
 
 > [!WARNING]
 > When using Docker to install Falcor, make sure to include the `-v Falcor:/app/backend/data` in your Docker command. This step is crucial as it ensures your database is properly mounted and prevents any loss of data.
@@ -162,4 +156,4 @@ This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LI
 
 ---
 
-Modified from Open WebUI for Capella University by [Austin Potter](https://github.com/dangerpotter) - Let's make Falcor even more amazing together! 💪
+Modified from Open WebUI for Capella University by [Austin Potter](https://github.com/dangerpotter)
